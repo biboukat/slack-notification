@@ -32991,6 +32991,7 @@ function main() {
         const slack_name = core.getInput("name");
         const slack_icon = core.getInput("icon_url");
         const slack_emoji = core.getInput("icon_emoji"); // https://www.webfx.com/tools/emoji-cheat-sheet/
+        const pretext_message = core.getInput("pretext");
         // Force as secret, forces *** when trying to print or log values
         core.setSecret(github_token);
         core.setSecret(webhook_url);
@@ -33098,6 +33099,7 @@ function main() {
             footer: repo_url,
             footer_icon: "https://github.githubassets.com/favicon.ico",
             fields: job_fields,
+            pretext: pretext_message,
         };
         // Build our notification payload
         const slack_payload_body = Object.assign(Object.assign(Object.assign(Object.assign({ attachments: [slack_attachment] }, (slack_name && { username: slack_name })), (slack_channel && { channel: slack_channel })), (slack_emoji && { icon_emoji: slack_emoji })), (slack_icon && { icon_url: slack_icon }));
@@ -33113,9 +33115,6 @@ function main() {
     });
 }
 function handleError(err) {
-    // TODO remove my logs
-    console.log("bla error ------>", err);
-    console.log("bla error ------>", JSON.stringify(err));
     core.error(err);
     if (err && err.message) {
         core.setFailed(err.message);

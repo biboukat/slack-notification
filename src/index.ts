@@ -27,6 +27,7 @@ async function main(): Promise<void> {
   const slack_name = core.getInput("name");
   const slack_icon = core.getInput("icon_url");
   const slack_emoji = core.getInput("icon_emoji"); // https://www.webfx.com/tools/emoji-cheat-sheet/
+  const pretext_message = core.getInput("pretext");
   // Force as secret, forces *** when trying to print or log values
   core.setSecret(github_token);
   core.setSecret(webhook_url);
@@ -52,7 +53,7 @@ async function main(): Promise<void> {
   const completed_jobs = jobs_response.jobs.filter(
     (job) => job.status === "completed"
   );
-  
+
   console.log("bla ----> completed_jobs", JSON.stringify(completed_jobs));
 
   // Configure slack attachment styling
@@ -161,6 +162,7 @@ async function main(): Promise<void> {
     footer: repo_url,
     footer_icon: "https://github.githubassets.com/favicon.ico",
     fields: job_fields,
+    pretext: pretext_message,
   };
   // Build our notification payload
   const slack_payload_body = {
@@ -183,9 +185,6 @@ async function main(): Promise<void> {
 }
 
 function handleError(err: Error): void {
-  // TODO remove my logs
-  console.log("bla error ------>", err);
-  console.log("bla error ------>", JSON.stringify(err));
   core.error(err);
   if (err && err.message) {
     core.setFailed(err.message);

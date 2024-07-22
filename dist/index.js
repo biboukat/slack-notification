@@ -29210,6 +29210,8 @@ try {
     console.log(`The event payload: ${payload}`);
 }
 catch (error) {
+    console.log("bla error ------>", error);
+    console.log("bla error ------>", JSON.stringify(error));
     core_1.default.setFailed(error.message);
 }
 

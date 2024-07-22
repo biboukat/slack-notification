@@ -32978,9 +32978,7 @@ function main() {
     return __awaiter(this, void 0, void 0, function* () {
         var _a;
         // Collect Action Inputs
-        const webhook_url = core.getInput("slack_webhook_url", {
-            required: true,
-        });
+        const webhook_url = core.getInput("slack_webhook_url", { required: true });
         const github_token = core.getInput("repo_token", { required: true });
         const jobs_to_fetch = core.getInput("jobs_to_fetch", { required: true });
         const include_jobs = core.getInput("include_jobs", {
@@ -33012,6 +33010,7 @@ function main() {
             per_page: parseInt(jobs_to_fetch, 30),
         });
         const completed_jobs = jobs_response.jobs.filter((job) => job.status === "completed");
+        console.log("bla ----> completed_jobs", JSON.stringify(completed_jobs));
         // Configure slack attachment styling
         let workflow_color; // can be good, danger, warning or a HEX color (#00FF00)
         let workflow_msg;

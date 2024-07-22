@@ -29225,12 +29225,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(9689));
-const github_1 = __importDefault(__nccwpck_require__(2706));
+const github_1 = __nccwpck_require__(2706);
 process.on("unhandledRejection", handleError);
 main().catch(handleError);
 function main() {
@@ -29243,7 +29240,7 @@ function main() {
             const time = new Date().toTimeString();
             core.setOutput("time", time);
             // Get the JSON webhook payload for the event that triggered the workflow
-            const payload = JSON.stringify(github_1.default.context.payload, undefined, 2);
+            const payload = JSON.stringify(github_1.context.payload, undefined, 2);
             console.log(`The event payload: ${payload}`);
         }
         catch (error) {
@@ -29254,6 +29251,8 @@ function main() {
     });
 }
 function handleError(err) {
+    console.log("bla error ------>", err);
+    console.log("bla error ------>", JSON.stringify(err));
     core.error(err);
     if (err && err.message) {
         core.setFailed(err.message);

@@ -1,5 +1,5 @@
 import * as core from "@actions/core";
-import github from "@actions/github";
+import { context } from "@actions/github";
 
 process.on("unhandledRejection", handleError);
 main().catch(handleError);
@@ -14,7 +14,7 @@ async function main(): Promise<void> {
     const time = new Date().toTimeString();
     core.setOutput("time", time);
     // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(github.context.payload, undefined, 2);
+    const payload = JSON.stringify(context.payload, undefined, 2);
     console.log(`The event payload: ${payload}`);
   } catch (error: any) {
     console.log("bla error ------>", error);
@@ -24,6 +24,8 @@ async function main(): Promise<void> {
 }
 
 function handleError(err: Error): void {
+  console.log("bla error ------>", err);
+  console.log("bla error ------>", JSON.stringify(err));
   core.error(err);
   if (err && err.message) {
     core.setFailed(err.message);

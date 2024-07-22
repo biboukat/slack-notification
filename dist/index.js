@@ -29200,6 +29200,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __importDefault(__nccwpck_require__(9689));
 const github_1 = __importDefault(__nccwpck_require__(2706));
 try {
+    console.log('bla 1');
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core_1.default.getInput("who-to-greet");
     console.log(`Hello ${nameToGreet}!`);

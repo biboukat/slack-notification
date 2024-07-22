@@ -39,6 +39,10 @@ inputs:
     description: 'Optional pre-text that appears above the attachment block'
     required: false
     default: ''
+  names_of_jobs_to_fetch:
+    description: 'when to display specific jobs, format - job_name1,job_name2'
+    required: false
+    default: ''
 runs:
   using: 'node20'
   main: 'dist/index.js'

@@ -2,6 +2,8 @@ import core from "@actions/core";
 import github from "@actions/github";
 
 try {
+  console.log('bla 1');
+  
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput("who-to-greet");
   console.log(`Hello ${nameToGreet}!`);

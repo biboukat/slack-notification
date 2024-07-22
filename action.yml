@@ -1,13 +1,40 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Slack Workflow Notifications'
+author: 'Alex Kovtun'
+description: 'A Github Action for sending Workflow run results to Slack'
+branding:
+  icon: message-square
+  color: blue
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  repo_token:
+    description: 'You must manually pass in secrets.GITHUB_TOKEN'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  slack_webhook_url:
+    description: 'Your slack webhook url'
+    required: true
+  channel:
+    description: 'Override the default channel configured by the SLACK_WEBHOOK_URL'
+    required: false
+  name:
+    description: 'Override the default name configured by the Slack SLACK_WEBHOOK_URL'
+    required: false
+  icon_emoji:
+    description: 'Override the default webhook icon with an emoji. Uses emoji code: https://www.webfx.com/tools/emoji-cheat-sheet/'
+    required: false
+  icon_url:
+    description: 'Override the default webhook icon with an image via url.'
+    required: false
+  include_jobs:
+    description: 'Should the slack notification include individual job status and run times'
+    required: true
+    default: "true"
+  include_commit_message:
+    description: 'Should the slack notification include the head commit message'
+    required: true
+    default: "false"
+  jobs_to_fetch:
+    description: 'Number of jobs to fetch (for workflows with big number of jobs)'
+    required: false
+    default: '30'
 runs:
   using: 'node20'
   main: 'dist/index.js'

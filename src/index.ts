@@ -59,8 +59,6 @@ async function main(): Promise<void> {
     return job.status === "completed";
   });
 
-  console.log("bla ----> jobs_response.jobs", JSON.stringify(jobs_response.jobs));
-
   // Configure slack attachment styling
   let workflow_color; // can be good, danger, warning or a HEX color (#00FF00)
   let workflow_msg;

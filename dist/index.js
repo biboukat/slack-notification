@@ -32908,7 +32908,7 @@ function wrappy (fn, cb) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.compute_duration = compute_duration;
 // Converts start and end dates into a duration string
-function compute_duration({ start, end }) {
+function compute_duration({ start, end, }) {
     // FIXME: https://github.com/microsoft/TypeScript/issues/2361
     const duration = end.valueOf() - start.valueOf();
     let delta = duration / 1000;
@@ -32920,12 +32920,13 @@ function compute_duration({ start, end }) {
     delta -= minutes * 60;
     const seconds = Math.floor(delta % 60);
     // Format duration sections
-    const format_duration = (value, text, hide_on_zero) => (value <= 0 && hide_on_zero ? '' : `${value}${text} `);
-    return (format_duration(days, 'd', true) +
-        format_duration(hours, 'h', true) +
-        format_duration(minutes, 'm', true) +
-        format_duration(seconds, 's', false).trim());
+    const format_duration = (value, text, hide_on_zero) => (value <= 0 && hide_on_zero ? "" : `${value}${text} `);
+    return (format_duration(days, "d", true) +
+        format_duration(hours, "h", true) +
+        format_duration(minutes, "m", true) +
+        format_duration(seconds, "s", false).trim());
 }
+//ncc build src/index.ts --license licenses.txt && git add . && git commit -m"mention on fail 1.15" && git tag -a -m "test" v1.15 && git push --follow-tags
 
 
 /***/ }),

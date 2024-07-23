@@ -169,7 +169,7 @@ async function main(): Promise<void> {
     pretext: pretext_message,
   };
   const blocks = [];
-  if (mention_users_on_fail.length > 0) {
+  if (mention_users_on_fail.length > 0 && workflow_msg === "Failed:") {
     const preparedMentionText = mention_users_on_fail
       .split(",")
       .map((userId) => {

@@ -44,7 +44,7 @@ inputs:
     required: false
     default: ''
   mention_users_on_fail:
-    description: 'mention_users_on_fail, format - userId1,userId2'
+    description: 'List of users to mention in case of failure, format - userId1,userId2'
     required: false
     default: ''
 runs:

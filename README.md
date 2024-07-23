@@ -17,6 +17,7 @@ This action will post workflow status notifications into your Slack channel
 | **icon_url**               | _optional_ | Allows you to provide a URL for an image to use as the slack bot user image when posting notifications. Overrides the default image created with your webhook.
 | **pretext**                | _optional_ | Optional pre-text that appears above the attachment block.
 | **names_of_jobs_to_fetch** | _optional_ | when to display specific jobs, format - `job_name1,job_name2`
+| **mention_users_on_fail** | _optional_ | List of users to mention in case of failure, format - `userId1,userId2`
 
 ## Example usage
 
@@ -31,4 +32,5 @@ This action will post workflow status notifications into your Slack channel
 ```
 
 _copypasted from: [Gamesight/slack-workflow-status](https://github.com/Gamesight/slack-workflow-status/tree/master)_
-added new properties: pretext, names_of_jobs_to_fetch
+
+added new properties: pretext, names_of_jobs_to_fetch, mention_users_on_fail

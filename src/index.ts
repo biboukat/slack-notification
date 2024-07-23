@@ -29,6 +29,7 @@ async function main(): Promise<void> {
   const slack_emoji = core.getInput("icon_emoji"); // https://www.webfx.com/tools/emoji-cheat-sheet/
   const pretext_message = core.getInput("pretext");
   const names_of_jobs_to_fetch = core.getInput("names_of_jobs_to_fetch");
+  const mention_users_on_fail = core.getInput("mention_users_on_fail");
   // Force as secret, forces *** when trying to print or log values
   core.setSecret(github_token);
   core.setSecret(webhook_url);
@@ -167,6 +168,21 @@ async function main(): Promise<void> {
     fields: job_fields,
     pretext: pretext_message,
   };
+  const blocks = [];
+  if (mention_users_on_fail.length > 0) {
+    const preparedMentionText = mention_users_on_fail
+      .split(",")
+      .map((userId) => {
+        return `<@${userId}> `;
+      });
+    blocks.push({
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: `Dear ${preparedMentionText} please fix me`,
+      },
+    });
+  }
   // Build our notification payload
   const slack_payload_body = {
     attachments: [slack_attachment],
@@ -174,6 +190,7 @@ async function main(): Promise<void> {
     ...(slack_channel && { channel: slack_channel }),
     ...(slack_emoji && { icon_emoji: slack_emoji }),
     ...(slack_icon && { icon_url: slack_icon }),
+    blocks,
   };
 
   const slack_webhook = new IncomingWebhook(webhook_url);

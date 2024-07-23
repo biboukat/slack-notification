@@ -43,6 +43,10 @@ inputs:
     description: 'when to display specific jobs, format - job_name1,job_name2'
     required: false
     default: ''
+  mention_users_on_fail:
+    description: 'mention_users_on_fail, format - userId1,userId2'
+    required: false
+    default: ''
 runs:
   using: 'node20'
   main: 'dist/index.js'

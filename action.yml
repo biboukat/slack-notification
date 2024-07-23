@@ -1,4 +1,4 @@
-name: 'Slack Workflow Notifications'
+name: 'Slack Notifications'
 author: 'Alex Kovtun'
 description: 'A Github Action for sending Workflow run results to Slack'
 branding:

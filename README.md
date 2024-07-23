@@ -29,3 +29,6 @@ This action will post workflow status notifications into your Slack channel
     repo_token: ${{secrets.GITHUB_TOKEN}}
     slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
 ```
+
+_copypasted from: [Gamesight/slack-workflow-status](https://github.com/Gamesight/slack-workflow-status/tree/master)_
+added new properties: pretext, names_of_jobs_to_fetch

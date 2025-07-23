@@ -179,7 +179,7 @@ async function main(): Promise<void> {
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `Dear ${preparedMentionText} please fix me`,
+        text: `Dear ${preparedMentionText}, ${context.actor} is trying to break the tests`,
       },
     });
   }
